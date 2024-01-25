@@ -5,7 +5,7 @@ const UserSchema = new Schema({
   email: { type: String, required: true, unique: true },
   username: { type: String, required: true, unique: true },
   firstName: { type: String, required: true },
-  lastName: { type: String, default: "" }, // fix to allow no lastnames
+  lastName: { type: String, default: "" },
   photo: { type: String, required: true },
 });
 
