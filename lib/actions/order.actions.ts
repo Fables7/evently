@@ -107,7 +107,11 @@ export async function getOrdersByEvent({
           eventTitle: "$event.title",
           eventId: "$event._id",
           buyer: {
-            $concat: ["$buyer.firstName", " ", "$buyer.lastName"],
+            $concat: [
+              "$buyer.firstName",
+              " ",
+              { $ifNull: ["$buyer.lastName", ""] },
+            ],
           },
         },
       },
@@ -121,6 +125,7 @@ export async function getOrdersByEvent({
       },
     ]);
 
+    console.log("orders:", orders);
     return JSON.parse(JSON.stringify(orders));
   } catch (error) {
     handleError(error);
